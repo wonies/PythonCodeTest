@@ -8,19 +8,18 @@ for _ in range(m):
     a, b =  map(int, input().split())
     graph[a-1][b-1] = 1
 
-def DFS(start, next, end):
+def DFS(start, end):
     global cnt
-    if (next == end):
-        print("start, end", start, end)
+    if (start == end):
         cnt += 1
         return 
-    else:
-        for i in range(start, end + 1):
-            if (graph[i][next] == 1):
-                DFS(next, next + 1, end)
-            else:
-                DFS(start + 1, next, end)
+    visited[start] = True
+    for i in range(n):
+        if (graph[start][i] == 1 and not visited[i]):
+            DFS(i, end)
+    visited[start] = False
 
 cnt = 0
-DFS(0, 1, n)
+visited = [False] * n
+DFS(0, n-1)
 print(cnt)
