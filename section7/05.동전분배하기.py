@@ -13,7 +13,7 @@ def DFS(level, divides, elements):
         divides[i] += coinlist[level]
         DFS(level + 1, divides, elements + 1)
         divides[i] -= coinlist[level]
-    
+
 n = int(input())
 coinlist = []
 for _ in range(n):
